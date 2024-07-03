@@ -1,18 +1,22 @@
 import express from "express";
 import { log } from "node:console";
 import { fileURLToPath } from "node:url";
-import {dirname} from "path";
+import { dirname, join } from "node:path";
 
-const app = express(),
-      port = 3000,
-      __filename = fileURLToPath(import.meta.url),
-      __dirname = dirname(__filename);
+const app = express();
+const port = 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-app.use(express.urlencoded({extended: true}));
+// Middleware to serve static files from the 'public' directory
+app.use(express.static(join(__dirname, 'public')));
+
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/public" + '/signup.html');
+    res.sendFile(join(__dirname, 'public', 'signup.html'));
 });
-app.listen(port, ()=> {
-    log(`server has started at http://localhost:${port}`);
+
+app.listen(port, () => {
+    log(`Server has started at http://localhost:${port}`);
 });
