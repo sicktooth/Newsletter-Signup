@@ -17,6 +17,14 @@ app.get('/', (req, res) => {
     res.sendFile(join(__dirname, 'signup.html'));
 });
 
+app.post('/success', (req, res) =>{
+    var email = req.body.email,
+        firstName = req.body.firstName,
+        lastName = req.body.lastName;
+    log(firstName + ' ' + lastName + ' ' + email);
+    res.sendFile(join(__dirname, 'success.html'));
+});
+
 app.listen(port, () => {
     log(`Server has started at http://localhost:${port}`);
 });
