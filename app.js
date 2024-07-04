@@ -9,12 +9,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Middleware to serve static files from the 'public' directory
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.sendFile(join(__dirname, 'public', 'signup.html'));
+    res.sendFile(join(__dirname, 'signup.html'));
 });
 
 app.listen(port, () => {
