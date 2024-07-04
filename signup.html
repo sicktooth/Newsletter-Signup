@@ -166,20 +166,20 @@
 
     
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form action="/success" method="post">
     <!-- <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">Signup to my Newsletter</h1>
 
     <div class="form-floating">
-      <input type="text" class="form-control top" id="floatingFname" placeholder="First Name" required autofocus>
+      <input type="text" name="firstName" class="form-control top" id="floatingFname" placeholder="First Name" required autofocus>
       <label for="floatingFname">First name</label>
     </div>
     <div class="form-floating">
-      <input type="text" class="form-control middle" id="floatingLname" placeholder="Last Name" required>
+      <input type="text" name="lastName" class="form-control middle" id="floatingLname" placeholder="Last Name" required>
       <label for="floatingLname">Last name</label>
     </div>
     <div class="form-floating">
-      <input type="email" class="form-control bottom" id="floatingInput" placeholder="name@example.com" required autocomplete="email">
+      <input type="email" name="email" class="form-control bottom" id="floatingInput" placeholder="name@example.com" required autocomplete="email">
       <label for="floatingInput">Email address</label>
     </div>
     
