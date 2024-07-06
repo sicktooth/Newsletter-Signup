@@ -21,7 +21,18 @@ app.post('/success', (req, res) =>{
     var email = req.body.email,
         firstName = req.body.firstName,
         lastName = req.body.lastName;
-    log(firstName + ' ' + lastName + ' ' + email);
+    var data = {
+        members: [
+            {
+                email_address: email,
+                status: "subscribed",
+                merge_fields: {
+                    FNAME: firstName,
+                    LNAME: lastName
+                }
+            }
+        ]
+    };
     res.sendFile(join(__dirname, 'success.html'));
 });
 
@@ -29,5 +40,8 @@ app.listen(port, () => {
     log(`Server has started at http://localhost:${port}`);
 });
 
-// API KEY FOR 
+// API KEY  
 // a78e00f410bcbbc2df05d514dd4678eb-us13
+
+// List ID
+// 00bcda0944
