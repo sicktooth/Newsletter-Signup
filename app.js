@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     res.sendFile(join(__dirname, 'signup.html'));
 });
 
-app.post('/success', (req, res) =>{
+app.post('/', (req, res) =>{
     const email = req.body.email,
         firstName = req.body.firstName,
         lastName = req.body.lastName;
@@ -39,16 +39,30 @@ app.post('/success', (req, res) =>{
     };
 
     const jsonData = JSON.stringify(data);
-    res.sendFile(join(__dirname, 'success.html'));
+    // res.sendFile(join(__dirname, 'success.html'));
 
     const url = "https://us13.api.mailchimp.com/3.0/lists/00bcda0944",
           options = {
             method: "POST",
+            auth: "sammy:6349524cedb3aa14b2c261ecae6ac07d-us13"
           };
 
-    https.request(url, options, (response)=>{
-
+    const request = https.request(url, options, (response)=>{
+        response.on("data", (data) => {
+            log(JSON.parse(data));
+            
+        });
+        
+        log(response.statusCode);
+        if (response.statusCode === 200) {
+            res.sendFile(join(__dirname, 'success.html'));
+        }
+        else {
+            res.sendFile(join(__dirname, 'failure.html'));
+        }
     });
+    request.write(jsonData);
+    request.end();
 
 });
 
