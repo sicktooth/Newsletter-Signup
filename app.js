@@ -26,14 +26,12 @@ app.post('/', (req, res) =>{
     const data = {
         members: [
             {
-
                 email_address: email,
                 status: "subscribed",
                 merge_fields: {
                     FNAME: firstName,
                     LNAME: lastName
                 }
-                
             }
         ]
     };
@@ -66,7 +64,11 @@ app.post('/', (req, res) =>{
 
 });
 
-app.listen(port, () => {
+app.post('/failure', (req, res) =>{
+    res.redirect('/');
+});
+
+app.listen(process.env.PORT || port, () => {
     log(`Server has started at http://localhost:${port}`);
 });
 
