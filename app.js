@@ -3,7 +3,10 @@ import { log } from "node:console";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import https from "node:https";
+import dotenv from 'dotenv';
 
+dotenv.config();
+const apiKey = process.env.mailChimpAuth;
 const app = express();
 const port = 3000;
 const __filename = fileURLToPath(import.meta.url);
@@ -42,7 +45,7 @@ app.post('/', (req, res) =>{
     const url = "https://us13.api.mailchimp.com/3.0/lists/00bcda0944",
           options = {
             method: "POST",
-            auth: "sammy:6349524cedb3aa14b2c261ecae6ac07d-us13"
+            auth: apiKey
           };
 
     const request = https.request(url, options, (response)=>{
