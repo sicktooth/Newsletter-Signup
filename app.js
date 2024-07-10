@@ -74,9 +74,3 @@ app.post('/failure', (req, res) =>{
 app.listen(process.env.PORT || port, () => {
     log(`Server has started at http://localhost:${port}`);
 });
-
-// API KEY  
-
-
-// List ID
-// 00bcda0944
